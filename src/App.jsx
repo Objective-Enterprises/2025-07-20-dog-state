@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import Setting from './Setting'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import GuestList from './GuestList'
+import Settings from './Settings'
 
 export default function App () {
   const [guestList, setGuestList] = useState(['Zelda', 'Dorothy', 'Tallulah'])
@@ -7,21 +9,26 @@ export default function App () {
     const uninvited = guestList.filter(guest => guest !== name)
     setGuestList(uninvited)
   }
-  const items = guestList.map((guest, index) => {
-    return <li key={index}>{guest}</li>
-  })
-  const settings = guestList.map((guest, index) => {
-    return <Setting key={index} name={guest} uninvite={uninvite} />
-  })
+
   return (
-    <>
+    <BrowserRouter>
       <h1>Dog Party App</h1>
-      <h2>Guest List</h2>
-      <ul>
-        {items}
-      </ul>
-      <h2>Settings</h2>
-      {settings}
-    </>
+      <div>
+        <Link to='/guest-list'>Guest List</Link>
+      </div>
+      <div>
+        <Link to='/settings'>Settings</Link>
+      </div>
+      <Routes>
+        <Route
+          path='/guest-list'
+          element={<GuestList guestList={guestList} />}
+        />
+        <Route
+          path='/settings'
+          element={<Settings guestList={guestList} uninvite={uninvite} />}
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
