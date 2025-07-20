@@ -1,14 +1,28 @@
 import Setting from "./Setting"
 
 export default function Settings (props) {
-  const settings = props.guestList.map((guest, index) => {
-    return <Setting key={index} name={guest} uninvite={props.uninvite} />
-  })
-
+  console.log(props)
   return (
     <>
       <h2>Settings</h2>
-      {settings}
+      <Setting
+        name='Zelda'
+        guestList={props.guestList}
+        uninvite={props.uninvite}
+        invite={props.invite}
+      />
+      <Setting
+        name='Dorothy'
+        guestList={props.guestList}
+        uninvite={props.uninvite}
+        invite={props.invite}
+      />
+      <Setting
+        name='Tallulah'
+        guestList={props.guestList}
+        uninvite={props.uninvite}
+        invite={props.invite}
+      />
     </>
   )
 }

@@ -6,11 +6,14 @@ import Home from './Home'
 
 export default function App () {
   const [guestList, setGuestList] = useState(['Zelda', 'Dorothy', 'Tallulah'])
+  function invite (name) {
+    const invited = [...guestList, name]
+    setGuestList(invited)
+  }
   function uninvite (name) {
     const uninvited = guestList.filter(guest => guest !== name)
     setGuestList(uninvited)
   }
-
   return (
     <BrowserRouter>
       <h1>Dog Party App</h1>
@@ -26,7 +29,7 @@ export default function App () {
       <Routes>
         <Route
           path='/'
-          element={<Home guestList={guestList} uninvite={uninvite} />}
+          element={<Home guestList={guestList} invite={invite} uninvite={uninvite} />}
         />
         <Route
           path='/guest-list'
@@ -34,7 +37,7 @@ export default function App () {
         />
         <Route
           path='/settings'
-          element={<Settings guestList={guestList} uninvite={uninvite} />}
+          element={<Settings guestList={guestList} invite={invite} uninvite={uninvite} />}
         />
       </Routes>
     </BrowserRouter>
