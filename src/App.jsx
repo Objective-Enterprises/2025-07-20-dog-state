@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import GuestList from './GuestList'
 import Settings from './Settings'
 import Home from './Home'
+import Guest from './Guest'
 
 export default function App () {
   const [guestList, setGuestList] = useState(['Zelda', 'Dorothy', 'Tallulah'])
@@ -38,6 +39,10 @@ export default function App () {
         <Route
           path='/settings'
           element={<Settings guestList={guestList} invite={invite} uninvite={uninvite} />}
+        />
+        <Route
+          path='/guest/:name'
+          element={<Guest guestList={guestList} invite={invite} uninvite={uninvite} />}
         />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,13 @@
+import { Link } from 'react-router-dom'
+
 export default function GuestList (props) {
   const items = props.guestList.map((guest, index) => {
-    return <li key={index}>{guest}</li>
+    const url = `/guest/${guest}`
+    return (
+      <li key={index}>
+        <Link to={url}>{guest}</Link>
+      </li>
+    )
   })
   return (
     <>
